@@ -6,6 +6,17 @@
     <title>Resertvation System</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
+  <style>
+    .button{
+      color:white; 
+      cursor:pointer; 
+      font-size: 16px; 
+      background-color:#e7d8d836; 
+      border-radius: 12px;
+      border:0; 
+      padding:20px 20px 20px 20px;
+    }
+  </style>
   <body>
     <div class="container">
       <div class="header">
@@ -20,27 +31,37 @@
           <li><a href="/contact">CONTACT</a></li>
         </ul>
       </div>
-      <div class="content">
-        <h3>레스토랑 예약하기</h3>
+      <div class="content" style="text-align: center; height:500px;">
+        <h2>레스토랑 예약하기</h2>
         <form method="get" action="/seat">
-          <fieldset>
-            <legend>예약자 정보</legend>
+          <fieldset style="text-align: center; width: 60%;">
+            <legend style="font-size: 20px;">예약자 정보</legend>
             예약인원:
-            <select name="person" size="1">
+            <select style="margin-right: 275px; margin-top: 10px;" name="person" size="1">
               <option value="1">1명</option>
               <option value="2">2명</option>
               <option value="3">3명</option>
               <option value="4">4명</option>
-              <option value="5">5명</option>
-              <option value="6">6명</option>
             </select>
 
-            <legend> 예약일자 선택</legend>
-            <input type="date" name="reservation_date"/>
-            <input type="time" name="reservation_time" min="09:00" max="20:00"/>
+            <legend style="margin-right: 327px; margin"> </br></br>예약일자</legend>
+            <input style="margin-right:120px;"  type="date" name="reservation_date"/>
+            <input type="hidden" name="name" value="{{user.name}}">
+            <button class="button" type="submit" id="seatSelectButton" onclick="location.href='seat.html'"> 좌석 선택</button>
+            </br></br></br>
+            <div style="margin-bottom: 6px; margin-right: 320px;">예약시간</div>
+            
+            <select style="margin-right: 290px; margin-left: 10px; margin-bottom: 20px;"name="reservation_time" size="1">
+              <option value="9">09:00~11:00</option>
+              <option value="11">11:00~13:00</option>
+              <option value="13">13:00~15:00</option>
+              <option value="14">15:00~17:00</option>
+              <option value="17">17:00~19:00</option>
+              <option value="19">19:00~21:00</option>
+              <option value="21">21:00~23:00</option>
+            </select>
           </fieldset>
           <br>
-          <button type="submit" onclick="location.href='/seat'"> 다음 </button>
           </form>
       </div>
       <div class="footer">

@@ -3,11 +3,11 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const User = require('../models/user');
-
+const Booking = require('../models/booking');
 const router = express.Router();
 
 router.post('/join', isNotLoggedIn, async ( req, res, next) => {
-  const {email,password, name, phoneNumber} = req.body;
+  const {email, password, name, phoneNumber} = req.body;
   try {
     const exUser = await User.findOne({ where: { email } });
     if (exUser) {
@@ -15,6 +15,8 @@ router.post('/join', isNotLoggedIn, async ( req, res, next) => {
       console.log('존재하는 아이디입니다.');
     }
     const hash = await bcrypt.hash(password, 12);
+    
+  console.log(req.body);
     await User.create({
       email,
       password: hash,

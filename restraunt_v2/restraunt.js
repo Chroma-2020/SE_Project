@@ -65,6 +65,13 @@ app.use((req, res, next) => {
   next(error);
 });
 
+// var fs = require('fs');
+
+// var dataBuffer = fs.readFileSync('./models/booking.json');
+// var dataJSON = dataBuffer.toString();
+// var data = JSON.parse(dataJSON)
+// console.log(data);
+
 app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};

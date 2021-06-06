@@ -246,6 +246,31 @@ form>fieldset{
   }
 }
 
+#reserveButton{
+  width : 80px;
+  height : 35px;
+  border : 3px solid rgb(70, 70, 70);
+  background: rgb(240, 248, 255);
+  border-radius: 4px;
+  color : rgb(70, 70, 70);
+}
+#seatCancel{
+  width : 50px;
+  height : 35px;
+  border : 3px solid rgb(70, 70, 70);
+  background: rgb(240, 248, 255);
+  border-radius: 4px;
+  color : rgb(70, 70, 70);
+}
+
+#seatSelectButton{
+  width : 120px;
+  height : 70px;
+  border : 3px solid rgb(240, 248, 255);
+  background: rgb(120, 100, 100);
+  border-radius: 10px;
+  color : rgb(240, 248, 255);
+}
 
 
 a:link {color: white;} /* 링크 방문전 : 오렌지*/

@@ -9,53 +9,104 @@
     <script type="text/javascript">
     $(function(){
 
-      $('#T1').on('click', function() {
+      $('#1').on('click', function() {
       $('.seat').removeClass('enableclick');
-      $('#T1').addClass('enableclick');
+      $('#1').addClass('enableclick');
       });
 
-      $('#T2').on('click', function() {
+      $('#2').on('click', function() {
       $('.seat').removeClass('enableclick');
-      $('#T2').addClass('enableclick');
+      $('#2').addClass('enableclick');
       });
 
-      $('#T3').on('click', function() {
+      $('#3').on('click', function() {
       $('.seat').removeClass('enableclick');
-      $('#T3').addClass('enableclick');
+      $('#3').addClass('enableclick');
       });
 
-      $('#T4').on('click', function() {
+      $('#4').on('click', function() {
       $('.seat').removeClass('enableclick');
-      $('#T4').addClass('enableclick');
+      $('#4').addClass('enableclick');
       });
 
-      $('#T5').on('click', function() {
+      $('#5').on('click', function() {
       $('.seat').removeClass('enableclick');
-      $('#T5').addClass('enableclick');
+      $('#5').addClass('enableclick');
       });
 
-      $('#T6').on('click', function() {
+      $('#6').on('click', function() {
       $('.seat').removeClass('enableclick');
-      $('#T6').addClass('enableclick');
+      $('#6').addClass('enableclick');
       });
 
-      $('#T7').on('click', function() {
+      $('#7').on('click', function() {
       $('.seat').removeClass('enableclick');
-      $('#T7').addClass('enableclick');
+      $('#7').addClass('enableclick');
       });
 
-      $('#T8').on('click', function() {
+      $('#8').on('click', function() {
       $('.seat').removeClass('enableclick');
-      $('#T8').addClass('enableclick');
+      $('#8').addClass('enableclick');
       });
 
-      $('#T9').on('click', function() {
+      $('#9').on('click', function() {
       $('.seat').removeClass('enableclick');
-      $('#T9').addClass('enableclick');
+      $('#9').addClass('enableclick');
       });
+
+      $('#seatCancel').removeClass('enableclick');
 
     });
-      $('#seatCancel').removeClass('enableclick');
+      
+    </script>
+    <script type="text/javascript">
+      function getParam(sname) {
+        var params = location.search.substr(location.search.indexOf("?") + 1);
+        var sval = "";
+        params = params.split("&");
+        for (var i = 0; i < params.length; i++) {
+          temp = params[i].split("=");
+          if ([temp[0]] == sname) { sval = temp[1]; }
+        }
+        return sval;
+      }
+
+        var nameii = decodeURIComponent(getParam("name"));
+        var coverii = getParam("person");
+        var dateii = getParam("reservation_date");
+        var timeii = getParam("reservation_time");
+        var tableii;
+
+
+      function clickEvent(divObj) {
+        
+
+         if (confirm(divObj.id + '번 테이블을 예약하시겠습니까?')) {
+          tableii=divObj.id;
+         }
+      };
+
+      function clickEventsubmit(divObj) {
+      document.write('<form action="/booking" id="smb_form" method="post"><input type="hidden" id="time" name="time" value="' +
+        timeii + '"><input type="hidden" id="date" name="date" value="' + dateii + '"><input type="hidden" id="cover" name="cover" value="' + coverii
+        + '"><input type="hidden" id="name" name="name" value="' + nameii + '"><input type="hidden" id="table" name="table" value="' + tableii + '"></form>');
+      alert('인원: ' + coverii + ' / 예약날짜: ' + dateii + ' / 예약시간 : ' + timeii + ' / 예약자 명: ' + nameii + ' / 테이블 번호 : ' + tableii);
+      document.getElementById("smb_form").submit();
+    }
+    </script>
+
+    <script>
+      const URL = "./models/booking.json";
+      $.getJSON(URL,function(data){
+	    const items = data.item.table;
+    	console.log(items);
+      });
+
+      // const fs = require('fs');
+      // fs.readFile('models/booking.json', { encoding: 'utf8' }, (err, data) => {
+      // const bookingJson = JSON.parse(data);
+      // console.log(bookingJson);
+      // });
     </script>
     <style>
       .line {
@@ -67,21 +118,21 @@
         
           margin: 2px;
           float: left;
-          width: 60px;
-          height: 60px;
-          border-radius: 3px;
+          width: 58px;
+          height: 58px;
+          border-radius: 4px;
           text-align: center;
           font-size: 24px;
       }
 
       .enable {
           border-color: aliceblue;
-          border : 2px solid ;
+          border : 3px solid ;
           background: rgb(70, 70, 70);
       }
 
       .enable:hover {
-          background: rgb(128, 37, 1);
+          background: rgb(120, 100, 100);
       }
       
       .enableclick{
@@ -108,19 +159,20 @@
           <li><a href="/contact">CONTACT</a></li>
         </ul>
       </div>
+
       <div class="content">
-        <div style = "text-align: center; font-size : 24px; margin-bottom: 10px;" >자리선택하기</div>
+        <div style = "text-align: center; font-size : 28px; margin-bottom: 10px;">테이블 선택</div>
         <div class="line">
           <div class="seat" ></div>
           <div class="seat" ></div>
           <div class="seat" ></div>
-          <div class="seat enable"  id="T1" tableNum = "0">1</div>
+          <div class="seat enable" onclick="javascript:clickEvent(this)" id="1" tableNum = "T1">1</div>
           <div class="seat" ></div>
           <div class="seat" ></div>
-          <div class="seat enable" id="T2" tableNum = "1">2</div>
+          <div class="seat enable" onclick="javascript:clickEvent(this)" id="2" tableNum = "T2">2</div>
           <div class="seat" ></div>
           <div class="seat" ></div>
-          <div class="seat enable" id="T3" tableNum = "2">3</div>
+          <div class="seat enable" onclick="javascript:clickEvent(this)" id="3" tableNum = "T3">3</div>
           <div class="seat" ></div>
           <div class="seat" ></div>
         </div>
@@ -131,13 +183,13 @@
           <div class="seat" ></div>
           <div class="seat" ></div>
           <div class="seat" ></div>
-          <div class="seat enable" id="T4" tableNum = "4">4</div>
+          <div class="seat enable" onclick="javascript:clickEvent(this)" id="4" tableNum = "T4">4</div>
           <div class="seat" ></div>
           <div class="seat" ></div>
-          <div class="seat enable" id="T5" tableNum = "5">5</div>
+          <div class="seat enable" onclick="javascript:clickEvent(this)" id="5" tableNum = "T5">5</div>
           <div class="seat" ></div>
           <div class="seat" ></div>
-          <div class="seat enable" id="T6" tableNum = "6">6</div>
+          <div class="seat enable" onclick="javascript:clickEvent(this)" id="6" tableNum = "T6">6</div>
           <div class="seat" ></div>
           <div class="seat" ></div>
         </div>
@@ -148,27 +200,28 @@
           <div class="seat" ></div>
           <div class="seat" ></div>
           <div class="seat" ></div>
-          <div class="seat enable" id="T7" tableNum = "7">7</div>
+          <div class="seat enable" onclick="javascript:clickEvent(this)" id="7" tableNum = "T7">7</div>
           <div class="seat" ></div>
           <div class="seat" ></div>
-          <div class="seat enable" id="T8" tableNum = "8">8</div>
+          <div class="seat enable" onclick="javascript:clickEvent(this)" id="8" tableNum = "T8">8</div>
           <div class="seat" ></div>
           <div class="seat" ></div>
-          <div class="seat enable" id="T9" tableNum = "9">9</div>
+          <div class="seat enable" onclick="javascript:clickEvent(this)" id="9" tableNum = "T9">9</div>
           <div class="seat" ></div>
           <div class="seat" ></div>
-        </div>
-        <div style="margin-top: 7px; text-align: center;">
-          <button type="submit" formaction="action1.html"formmethod="post" formtarget="_blank" style="margin-right: 22px;">예약하기</button>
-          <button type="" id="seatCancel" onclick="location.href='/reservation'" formaction=  "action2.html" formmethod="post" formtarget="_self" style="margin-left: 22px;">취소</button>
         </div>
 
+        <div style="margin-top: 2px; text-align: right;">
+          <button type="" id="reserveButton" style="margin-right: 22px;" onclick="javascript:clickEventsubmit(this)">예약하기</button>
+          <button type="" id="seatCancel" onclick="location.href='/reservation'" formaction=  "action2.html" formmethod="post" formtarget="_self" style="margin-right: 22px;">취소</button>
+        </div>
       </div>
+      </form>
       <div class="footer">
         {% if user %}
             <a href="/auth/logout" id="logout" class="login" style="width:115px">LOGOUT</a>  
         {% else %}
-            <a href="/login" class="login"  style="width:115px">LOGIN</a>
+            <a href="/login" class="login" style="width:115px">LOGIN</a>
         {% endif %}
       </div>
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -181,3 +234,7 @@
       </script>
   </body>
 </html>
+
+
+
+
